@@ -1,26 +1,220 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* =====================
+   GLOBAL
+===================== */
 body {
-  background: var(--background);
-  color: var(--foreground);
+  margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
+  color: #171717;
+}
+
+/* ===== HEADER ===== */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px 100px ;
+ 
+}
+
+.header__title {
+  font-size: 36px;
+  font-weight:400;
+  color: #901C1C;
+}
+
+/* =====================
+   HOME – LISTE PHOTOGRAPHES
+===================== */
+
+.photographers {
+  padding: 0 100px 80px;
+}
+
+.photographers__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 60px 120px; /* ligne / colonne */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.photographers__item {
+  list-style: none;
+}
+
+/* =====================
+   CARD – PHOTOGRAPHER
+===================== */
+
+.photographer-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.photographer-card__link {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: inherit;
+  outline-offset: 6px;
+}
+
+/* Focus clavier (accessibilité) */
+.photographer-card__link:focus-visible {
+  outline: 3px solid #901C1C;
+  border-radius: 10px;
+}
+
+/* Avatar rond */
+.photographer-card__avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Nom (orange FishEye) */
+.photographer-card__name {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: #D3573C;
+}
+
+/* Ville + pays (rouge FishEye) */
+.photographer-card__location {
+  margin: 6px 0 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: #901C1C;
+}
+
+/* Tagline */
+.photographer-card__tagline {
+  margin: 6px 0 0;
+  font-size: 12px;
+  font-weight: 400;
+  color: #000;
+}
+
+/* Prix */
+.photographer-card__price {
+  margin: 6px 0 0;
+  font-size: 12px;
+  font-weight: 400;
+  color: #757575;
+}
+
+/* =====================
+   UTILS A11Y
+===================== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* =====================
+   PAGE (COMMUN)
+===================== */
+.page {
+  padding: 40px 100px 80px;
+}
+
+/* =====================
+   PHOTOGRAPHER HERO
+===================== */
+.photographer-hero {
+  background: #fafafa;
+  border-radius: 6px;
+  padding: 40px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 100px;
+}
+
+.photographer-hero__info {
+ 
+}
+
+.photographer-hero__name {
+  margin: 0;
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: #d3573c;
+}
+
+.photographer-hero__location {
+  margin: 12px 0 0;
+  font-size: 20px;
+  color: #901c1c;
+}
+
+.photographer-hero__tagline {
+  margin: 16px 0 0;
+  font-size: 18px;
+  color: #525252;
+}
+
+.photographer-hero__contact {
+  background: #901c1c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 700;
+  width: 170px;
+  height: 69px;
+  cursor: pointer;
+}
+
+.photographer-hero__contact:focus-visible {
+  outline: 3px solid #901c1c;
+  outline-offset: 4px;
+}
+
+.photographer-hero__avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden; 
+  flex-shrink: 0;
+}
+
+.photographer-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
+
+/* =====================
+   GALLERY PLACEHOLDER
+===================== */
+.gallery {
+  margin-top: 40px;
+}
+
+.gallery__count {
+  margin: 0;
+  color: #525252;
 }
