@@ -19,3 +19,10 @@ export const updateNumberOfLikes = (mediaId, newNumberOfLikes) =>
     where: { id: mediaId },
     data: { likes: newNumberOfLikes },
   });
+
+export const incrementMediaLikes = (mediaId) =>
+  prisma.media.update({
+    where: { id: mediaId },
+    data: { likes: { increment: 1 } },
+    select: { id: true, likes: true },
+  });

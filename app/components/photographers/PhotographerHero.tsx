@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Photographer } from "@/app/types/photographer";
+import ContactModalController from "@/app/components/contact/ControllerModalContact";
 
 type Props = {
   photographer: Photographer;
@@ -21,9 +22,7 @@ export default function PhotographerHero({ photographer }: Props) {
         <p className="photographer-hero__tagline">{photographer.tagline}</p>
       </div>
 
-      <button type="button" className="photographer-hero__contact">
-        Contactez-moi
-      </button>
+      <ContactModalController photographer={photographer} />
 
       <div className="photographer-hero__avatar" aria-label={`Portrait de ${photographer.name}`}>
         <Image

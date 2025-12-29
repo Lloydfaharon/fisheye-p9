@@ -67,13 +67,11 @@ body {
   outline-offset: 6px;
 }
 
-/* Focus clavier (accessibilité) */
 .photographer-card__link:focus-visible {
   outline: 3px solid #901C1C;
   border-radius: 10px;
 }
 
-/* Avatar rond */
 .photographer-card__avatar {
   width: 200px;
   height: 200px;
@@ -83,7 +81,6 @@ body {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 
-/* Nom (orange FishEye) */
 .photographer-card__name {
   margin: 0;
   font-size: 36px;
@@ -92,7 +89,6 @@ body {
   color: #D3573C;
 }
 
-/* Ville + pays (rouge FishEye) */
 .photographer-card__location {
   margin: 6px 0 0;
   font-size: 14px;
@@ -100,7 +96,6 @@ body {
   color: #901C1C;
 }
 
-/* Tagline */
 .photographer-card__tagline {
   margin: 6px 0 0;
   font-size: 12px;
@@ -108,7 +103,6 @@ body {
   color: #000;
 }
 
-/* Prix */
 .photographer-card__price {
   margin: 6px 0 0;
   font-size: 12px;
@@ -149,10 +143,6 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 100px;
-}
-
-.photographer-hero__info {
- 
 }
 
 .photographer-hero__name {
@@ -218,3 +208,445 @@ body {
   margin: 0;
   color: #525252;
 }
+/* =====================
+   MEDIA GRID
+===================== */
+
+.media {
+  margin-top: 40px;
+}
+
+.media__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px 90px;
+}
+
+.media-card {
+  display: block;
+}
+
+.media-card__button {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.media-card__button:focus-visible {
+  outline: 3px solid #901c1c;
+  outline-offset: 6px;
+  border-radius: 6px;
+}
+
+.media-card__thumb {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #f2f2f2;
+}
+
+.media-card__img {
+  object-fit: cover;
+}
+
+.media-card__videoPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background: #eaeaea;
+}
+
+.media-card__play {
+  font-size: 48px;
+  color: #901c1c;
+}
+
+.media-card__meta {
+  margin-top: 10px;
+}
+
+.media-card__title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 400;
+  color: #901c1c;
+}
+/* =====================
+   CONTACT MODAL
+===================== */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 1000;
+  background: rgba(196, 196, 196, 0.40);
+}
+
+.modal {
+  width: min(669px, 100%);
+  height: 900px;;
+  background: #db8876;
+  border-radius: 6px;
+  padding: 28px 28px 22px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  outline: none;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 70px;
+}
+
+.modalTitle {
+  margin: 0;
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: #000;
+}
+
+.modalTitleName {
+  display: inline-block;
+}
+
+.modalClose {
+  background: transparent;
+  border: none;
+  font-size: 50px;
+  cursor: pointer;
+  padding: 6px 10px;
+  line-height: 1;
+  color: white;
+  font-weight: bold;
+}
+
+.modalClose:focus-visible {
+  outline: 3px solid #901c1c;
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.modalForm {
+  margin-top: 22px;
+  display: grid;
+  gap: 10px;
+}
+
+.modalLabel {
+  font-size: 36px;
+  font-weight: 500;
+  color: #312E2E;
+}
+
+.modalInput,
+.modalTextarea {
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 14px;
+  font-size: 16px;
+  background-color: white;
+
+  
+}
+
+.modalTextarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.modalSubmit {
+  margin-top: 6px;
+  width: fit-content;
+  background: #901c1c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 14px 20px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.modalSubmit:focus-visible {
+  outline: 3px solid #000;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  z-index: 2000;
+}
+
+.modalDialog {
+  width: min(1200px, 100%);
+  outline: none;
+}
+
+
+/* =====================
+   Lightbox
+===================== */
+
+.lightbox {
+  position: relative;
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
+  align-items: center;
+  gap: 18px;
+  
+}
+
+.lightbox__media {
+  position: relative;
+  width: 1050px;
+  height: 900px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #f2f2f2;
+ 
+}
+
+.lightbox__img {
+  object-fit: cover;
+}
+
+.lightbox__video {
+  width: 100%;
+  height: 100%;
+}
+
+.lightbox__title {
+  margin: 12px 0 0;
+  font-size: 18px;
+  color: #901c1c;
+}
+
+.lightbox__close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: transparent;
+  border: none;
+  font-size: 45px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px;
+  color: #901c1c;
+}
+
+.lightbox__nav {
+  background: transparent;
+  border: none;
+  font-size: 50px;
+  cursor: pointer;
+  color: #901c1c;
+  height: 80px;
+}
+
+.modalOverlay--lightbox {
+  background: #FFFFFF;
+}
+
+
+
+
+
+.media-card__meta {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.media-card__likes {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #901c1c;
+  font-size: 18px;
+}
+
+.likeButton {
+  background: transparent;
+  border: none;
+  color: #901c1c;
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.likeButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.likeButton:focus-visible {
+  outline: 3px solid #901c1c;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.photographer-stats {
+  position: fixed;
+  right: 100px;
+  bottom: 0;
+  background: #db8876;
+  border-radius: 6px 6px 0 0;
+  padding: 18px 24px;
+  display: flex;
+  gap: 30px;
+  font-weight: 500;
+}
+
+
+/* ===== TRI ===== */
+
+.tri {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 18px 0 22px;
+}
+
+.tri__label {
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+}
+
+/* conteneur du dropdown */
+.tri__wrap {
+  position: relative;
+}
+
+/* bouton rouge (Popularité) */
+.tri__btn {
+  width: 170px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 16px;
+  border: 0;
+
+  background: #901c1c;
+  color: #fff;
+
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+
+  border-radius: 5px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+/* quand ouvert : coins bas carrés*/
+.tri__btn.is-open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  box-shadow: none; /* l’ombre passe au panneau */
+}
+
+.tri__btn:focus-visible {
+  outline: 3px solid #901c1c;
+  outline-offset: 3px;
+}
+
+.tri__btnText {
+  line-height: 1;
+}
+
+.tri__chevron {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: rotate(0deg);
+  transition: transform 150ms ease;
+  font-size: 18px;
+}
+
+.tri__chevron.is-open {
+  transform: rotate(180deg);
+}
+
+.tri__panel {
+  position: absolute;
+  top: 52px; 
+  left: 0;
+  width: 170px;
+  z-index: 999;
+
+  background: #901c1c;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.22);
+  overflow: hidden;
+}
+
+
+.tri__opt {
+  width: 100%;
+  text-align: left;
+
+  padding: 16px;
+  border: 0;
+  background: transparent;
+  color: #fff;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  position: relative;
+ 
+}
+
+
+.tri__opt + .tri__opt {
+  border-top: none;
+}
+
+.tri__opt::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 16px;   /* marge gauche */
+  right: 16px;  /* marge droite */
+  height: 1px;
+  background: rgba(255, 255, 255, 0.6);
+}
+.tri__opt:hover,
+.tri__opt:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+  outline: none;
+}
+
+.tri__opt.is-selected {
+  background: rgba(255, 255, 255, 0.16);
+}
+

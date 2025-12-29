@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "@/app/components/header/header";
 import PhotographerHero from "@/app/components/photographers/PhotographerHero";
+import MediaGrid from "@/app/components/media/MediaGrid";
 import { getPhotographer, getAllMediasForPhotographer } from "@/app/lib/prisma-db";
 
 type PageProps = {
@@ -9,7 +10,7 @@ type PageProps = {
 };
 
 export default async function PhotographerPage({ params }: PageProps) {
-  const { id } = await params; // ✅ Next 16
+  const { id } = await params; 
   const photographerId = Number(id.split("-")[0]); 
 
   if (Number.isNaN(photographerId)) {
@@ -46,10 +47,7 @@ export default async function PhotographerPage({ params }: PageProps) {
       <main className="page" role="main">
         <PhotographerHero photographer={photographer} />
 
-        <section className="gallery" aria-label="Galerie du photographe">
-          <h2 className="sr-only">Galerie</h2>
-          <p className="gallery__count">Médias chargés : {medias.length}</p>
-        </section>
+        <MediaGrid medias={medias} photographerPrice={photographer.price}/>
       </main>
     </>
   );
