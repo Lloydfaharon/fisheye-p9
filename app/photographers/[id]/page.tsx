@@ -17,6 +17,7 @@ export default async function PhotographerPage({ params }: PageProps) {
     return (
       <>
         <Header />
+        
         <main className="page">
           <p>Identifiant de photographe invalide.</p>
           <Link href="/">Retour à l’accueil</Link>

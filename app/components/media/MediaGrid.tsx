@@ -161,7 +161,8 @@ export default function MediaGrid({ medias, photographerPrice }: Props) {
         aria-label="Statistiques du photographe"
       >
         <div className="photographer-stats__likes">
-          <span>{totalLikes}</span> <span aria-hidden="true">♥</span>
+          <span>{totalLikes}</span> 
+          <span className="likes-heart" aria-hidden="true">♥</span>
           <span className="sr-only">likes</span>
         </div>
 
