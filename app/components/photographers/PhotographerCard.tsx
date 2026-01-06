@@ -28,6 +28,7 @@ export default function PhotographerCard({ photographer }: Props) {
           width={200}
           height={200}
           className="photographer-card__avatar"
+          loading="eager"
         />
         <h2 className="photographer-card__name">{name}</h2>
       </Link>
