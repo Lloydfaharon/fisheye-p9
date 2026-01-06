@@ -13,8 +13,9 @@ type Media = {
   title: string;
   image?: string | null;
   video?: string | null;
+  thumbnail?: string | null;
   likes: number;
-  date: string; 
+  date: string;
 };
 
 type Props = {
@@ -35,6 +36,7 @@ export default function MediaGrid({ medias, photographerPrice }: Props) {
   // Tri
   const [triKey, setTriKey] = useState<TriKey>("popularity");
 
+  
   const totalLikes = useMemo(
     () => items.reduce((sum, m) => sum + m.likes, 0),
     [items]
@@ -72,7 +74,6 @@ export default function MediaGrid({ medias, photographerPrice }: Props) {
   const close = () => setIsOpen(false);
 
   const onLike = (mediaId: number) => {
-   
     setItems((prev) =>
       prev.map((m) => (m.id === mediaId ? { ...m, likes: m.likes + 1 } : m))
     );
@@ -94,7 +95,7 @@ export default function MediaGrid({ medias, photographerPrice }: Props) {
 
   return (
     <>
-      {/*  TRI  */}
+      {/* TRI */}
       <MediaTri value={triKey} onChange={setTriKey} />
 
       <section className="media" aria-label="Galerie du photographe">
@@ -110,6 +111,7 @@ export default function MediaGrid({ medias, photographerPrice }: Props) {
               >
                 <div className="media-card__thumb">
                   {m.image ? (
+                    // Cas IMAGE
                     <Image
                       src={`/assets/${m.image}`}
                       alt={m.title}
@@ -117,16 +119,32 @@ export default function MediaGrid({ medias, photographerPrice }: Props) {
                       sizes="(max-width: 1200px) 50vw, 33vw"
                       className="media-card__img"
                     />
-                  ) : (
-                    <div
-                      className="media-card__videoPlaceholder"
-                      aria-label={`Vidéo : ${m.title}`}
-                    >
+                  ) : m.video ? (
+                    // Cas VIDEO (Lecture au survol uniquement)
+                    <>
+                      <video
+                        src={`/assets/${m.video}`}
+                        className="media-card__img"
+                        muted
+                        loop
+                        playsInline
+                        aria-hidden="true"
+                        // Accessibilité (Titre de la vidéo)
+                        title={m.title}
+                        // Lancement au survol
+                        onMouseOver={(e) => e.currentTarget.play()}
+                        // Pause quand la souris sort
+                        onMouseOut={(e) => e.currentTarget.pause()}
+                      >
+                        Votre navigateur ne supporte pas la balise vidéo.
+                      </video>
+                      {/* Icône Play par dessus */}
                       <span className="media-card__play" aria-hidden="true">
                         ▶
                       </span>
-                    </div>
-                  )}
+                      <span className="sr-only">Vidéo</span>
+                    </>
+                  ) : null}
                 </div>
               </button>
 
@@ -161,8 +179,10 @@ export default function MediaGrid({ medias, photographerPrice }: Props) {
         aria-label="Statistiques du photographe"
       >
         <div className="photographer-stats__likes">
-          <span>{totalLikes}</span> 
-          <span className="likes-heart" aria-hidden="true">♥</span>
+          <span>{totalLikes}</span>
+          <span className="likes-heart" aria-hidden="true">
+            ♥
+          </span>
           <span className="sr-only">likes</span>
         </div>
 

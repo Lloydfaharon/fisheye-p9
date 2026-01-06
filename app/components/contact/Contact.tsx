@@ -1,20 +1,15 @@
 "use client";
 
-import { FormEvent, useEffect, useRef } from "react";
+import { FormEvent } from "react";
+import Modal from "@/app/components/modal/Modal";
 
 type Props = {
+  isOpen: boolean;
   photographerName: string;
   onClose: () => void;
 };
 
-export default function ContactModal({ photographerName, onClose }: Props) {
-  const dialogRef = useRef<HTMLDivElement | null>(null);
-
-  // Focus dans la modale à l’ouverture (accessibilité)
-  useEffect(() => {
-    dialogRef.current?.focus();
-  }, []);
-
+export default function Contact({ isOpen, photographerName, onClose }: Props) {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -24,38 +19,23 @@ export default function ContactModal({ photographerName, onClose }: Props) {
     const email = String(form.get("email") ?? "");
     const message = String(form.get("message") ?? "");
 
-    // demandé par le brief: log en console
-    console.log({
-      firstName,
-      lastName,
-      email,
-      message,
-    });
+    console.log({ firstName, lastName, email, message });
 
     onClose();
   };
 
   return (
-    <div
-      className="modalOverlay"
-      role="presentation"
-      onMouseDown={(e) => {
-        // clic sur l'overlay = fermer
-        if (e.target === e.currentTarget) onClose();
-      }}
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      ariaLabelledBy="contact-modal-title"
+      variant="contact"
     >
-      <div
-        className="modal"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="contact-modal-title"
-        tabIndex={-1}
-        ref={dialogRef}
-      >
+      <div className="modal">
         <div className="modalHeader">
           <h2 id="contact-modal-title" className="modalTitle">
-            Contactez-moi <br/>
-            <span className="modalTitleName"> {photographerName}</span>
+            Contactez-moi <br />
+            <span className="modalTitleName">{photographerName}</span>
           </h2>
 
           <button
@@ -121,6 +101,6 @@ export default function ContactModal({ photographerName, onClose }: Props) {
           </button>
         </form>
       </div>
-    </div>
+    </Modal>
   );
 }

@@ -6,15 +6,25 @@ type Props = {
   photographer: Photographer;
 };
 
+function getAltText(tagline: string) {
+  return tagline
+    ? `Portrait de photographe – ${tagline}`
+    : "Portrait de photographe";
+}
+
 export default function PhotographerCard({ photographer }: Props) {
   const { id, name, city, country, tagline, price, portrait } = photographer;
 
   return (
-    <article className="photographer-card" aria-label={`Photographe ${name}`}>
-      <Link href={`/photographers/${id}`} className="photographer-card__link">
+    <article className="photographer-card">
+      <Link
+        href={`/photographers/${id}`}
+        className="photographer-card__link"
+        aria-label={`Voir le profil de ${name}`}
+      >
         <Image
-          src={`/assets/photographers/${portrait}`}
-          alt={name}
+          src={`/assets/${portrait}`}
+          alt={getAltText(tagline)}
           width={200}
           height={200}
           className="photographer-card__avatar"
@@ -30,3 +40,4 @@ export default function PhotographerCard({ photographer }: Props) {
     </article>
   );
 }
+

@@ -1,18 +1,19 @@
 import React from "react";
 import Link from "next/link";
 
-export default function Header() {
+export default function HeaderPhotographers() {
   return (
-    <header className="header">
-      <Link href="/" aria-label="Accueil - FishEye" className="header__logo">
+    <header
+      className="header"
+      aria-label="En-tête du site"
+    >
+       <Link href= "/" aria-label="accueille">
         <svg
           width="200"
           height="50"
           viewBox="0 0 200 50"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-          focusable="false"
         >
           <path
             d="M24.7206 0.911621V6.51058H6.31164V17.5783H21.4333V22.9168H6.31164V39.1929H0V0.911621H24.7206Z"
@@ -44,9 +45,7 @@ export default function Header() {
           />
         </svg>
       </Link>
-
       <div>
-        <h1 className="header__title">Nos photographes</h1>
       </div>
     </header>
   );

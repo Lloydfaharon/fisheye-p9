@@ -5,6 +5,8 @@ const mediasData = require("../data/media.json");
 
 const prisma = new PrismaClient();
 
+
+
 async function main() {
   await prisma.photographer.createMany({
     data: photographersData,

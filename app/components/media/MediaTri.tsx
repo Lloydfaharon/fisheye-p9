@@ -123,7 +123,7 @@ export default function MediaTri({ value, onChange, label = "Trier par" }: Props
 
   return (
     <div className="tri" ref={wrapRef}>
-      <span className="tri__label">{label}</span>
+      <h2 className="tri__label">{label}</h2>
 
       <div className="tri__wrap">
         <button
@@ -132,7 +132,7 @@ export default function MediaTri({ value, onChange, label = "Trier par" }: Props
           type="button"
           className={`tri__btn ${open ? "is-open" : ""}`}
           aria-haspopup="listbox"
-          aria-expanded="true"
+          aria-expanded={open}  
           aria-controls={listboxId}
           onClick={() => setOpen((v) => !v)}
           onKeyDown={onButtonKeyDown}
@@ -160,7 +160,7 @@ export default function MediaTri({ value, onChange, label = "Trier par" }: Props
                 }}
                 type="button"
                 role="option"
-                aria-selected="false"
+                aria-selected={false} 
                 className="tri__opt"
                 onClick={() => selectIndex(idx)}
               >

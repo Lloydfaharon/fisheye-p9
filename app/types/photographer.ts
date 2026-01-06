@@ -6,4 +6,5 @@ export type Photographer = {
   tagline: string;
   price: number;
   portrait: string;
+  
 };

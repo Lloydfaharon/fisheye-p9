@@ -1,5 +1,6 @@
 import { getAllPhotographers } from "./lib/prisma-db";
-import Header from "../app/components/header/header";
+import Header from "./components/header/header";
+import PhotographerCard from "./components/photographers/PhotographerCard";
 
 export default async function HomePage() {
   const photographers = await getAllPhotographers();
@@ -8,38 +9,24 @@ export default async function HomePage() {
     <>
       <Header />
 
-      <main className="photographers" role="main">
-        <ul className="photographers__grid">
-          {photographers.map((p) => (
-            <li key={p.id} className="photographers__item">
-              <article
-                className="photographer-card"
-                aria-label={`Photographe ${p.name}`}
-              >
-                <a
-                  href={`/photographers/${p.id}`}
-                  className="photographer-card__link"
-                >
-                  <img
-                    src={`/assets/${p.portrait}`}
-                    alt={p.name}
-                    className="photographer-card__avatar"
-                  />
+      <main className="photographers">
+        <section aria-labelledby="home-title">
+          <h2 id="home-title" className="sr-only">
+            Liste des photographes
+          </h2>
 
-                  <h2 className="photographer-card__name">{p.name}</h2>
-                </a>
-
-                <p className="photographer-card__location">
-                  {p.city}, {p.country}
-                </p>
-
-                <p className="photographer-card__tagline">{p.tagline}</p>
-
-                <p className="photographer-card__price">{p.price}€/jour</p>
-              </article>
-            </li>
-          ))}
-        </ul>
+          {photographers.length === 0 ? (
+            <p>Aucun photographe disponible pour le moment.</p>
+          ) : (
+            <ul className="photographers__grid">
+              {photographers.map((p) => (
+                <li key={p.id} className="photographers__item">
+                  <PhotographerCard photographer={p} />
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
       </main>
     </>
   );

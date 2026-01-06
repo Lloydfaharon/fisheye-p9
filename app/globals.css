@@ -19,6 +19,14 @@ body {
  
 }
 
+.header__logo:focus-visible {
+  outline: 3px solid #901C1C;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+
+
 .header__title {
   font-size: 36px;
   font-weight:400;
@@ -69,8 +77,10 @@ body {
 
 .photographer-card__link:focus-visible {
   outline: 3px solid #901C1C;
-  border-radius: 10px;
+  outline-offset: 6px;
+  border-radius: 8px;
 }
+
 
 .photographer-card__avatar {
   width: 200px;
@@ -243,15 +253,23 @@ body {
 
 .media-card__thumb {
   position: relative;
-  width: 100%;
-  height: 300px;
   border-radius: 6px;
   overflow: hidden;
-  background: #f2f2f2;
+  aspect-ratio: 3 / 2; /* ou ce que tu utilises déjà */
 }
 
 .media-card__img {
   object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+video.media-card__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .media-card__videoPlaceholder {
@@ -263,8 +281,14 @@ body {
 }
 
 .media-card__play {
-  font-size: 48px;
-  color: #901c1c;
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 56px;
+  color: #d3573c;
+  text-shadow: 0 6px 18px rgba(0,0,0,.5);
+  pointer-events: none;
 }
 
 .media-card__meta {
@@ -283,12 +307,10 @@ body {
 .modalOverlay {
   position: fixed;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   padding: 24px;
-  z-index: 1000;
-  background: rgba(196, 196, 196, 0.40);
+  z-index: 2000;
 }
 
 .modal {
@@ -299,6 +321,26 @@ body {
   padding: 28px 28px 22px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.25);
   outline: none;
+}
+.modalDialog{
+  outline: none;
+}
+.modalDialog--default {
+  width: min(669px, 100%);
+  height: 900px;
+  background: #db8876;
+  border-radius: 6px;
+  padding: 28px 28px 22px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+
+}
+
+.modalOverlay--contact {
+  background: rgba(196, 196, 196, 0.40);
+}
+
+.modalOverlay--lightbox {
+  background: #fff;
 }
 
 .modalHeader {
@@ -366,6 +408,12 @@ body {
   min-height: 140px;
 }
 
+.modalInput:focus-visible,
+.modalTextarea:focus-visible {
+  outline: 3px solid #901c1c;
+  outline-offset: 3px;
+}
+
 .modalSubmit {
   margin-top: 6px;
   width: fit-content;
@@ -385,21 +433,14 @@ body {
   border-radius: 6px;
 }
 
-.modalOverlay {
-  position: fixed;
-  inset: 0;
-  
-  display: grid;
-  place-items: center;
-  padding: 24px;
-  z-index: 2000;
-}
 
 .modalDialog {
-  width: min(1200px, 100%);
+
   outline: none;
 }
-
+.modal:focus {
+  outline: none;
+}
 
 /* =====================
    Lightbox
@@ -672,4 +713,140 @@ body {
 }
 .skip-link:focus {
   left: 8px;
+}
+
+
+/* =================================================================
+   SECTION RESPONSIVE (MEDIA QUERIES)
+   ================================================================= */
+
+/* --- TABLETTES (max-width: 1024px) --- */
+@media (max-width: 1024px) {
+  
+  /* Réduction des marges latérales */
+  .header,
+  .photographers,
+  .page {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  /* Passage de 3 à 2 colonnes */
+  .photographers__grid,
+  .media__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+   /* --- NOUVEAU : Réduction de la taille de l'image sur tablettes --- */
+  .lightbox__media {
+    /* On passe de 85vh (par défaut) à 50vh pour que l'image soit moins haute */
+    max-height: 50vh; 
+    max-width: 50vh; 
+  }
+}
+
+/* --- MOBILE (max-width: 768px) --- */
+@media (max-width: 768px) {
+  
+  /* Réduction drastique des marges */
+  .header,
+  .photographers,
+  .page {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 30px;
+  }
+  
+  /* Header : empilement vertical */
+  .header {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .header__title {
+    font-size: 24px;
+    text-align: center;
+  }
+  .header__logo img {
+    height: 40px; /* Logo un peu plus petit */
+  }
+
+  /* Grilles : 1 seule colonne */
+  .photographers__grid,
+  .media__grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* Hero Photographe : Colonne, texte centré */
+  .photographer-hero {
+    flex-direction: column-reverse; /* Avatar en haut, texte en bas */
+    text-align: center;
+    padding: 30px 20px;
+    gap: 30px;
+  }
+  
+  .photographer-hero__name {
+    font-size: 40px; /* Texte moins gros */
+  }
+  
+  /* Bouton contact centré et fixe en bas (Optionnel, sinon laisser en relative) */
+  .photographer-hero__contact {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 150;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    width: 200px; /* Un peu plus large pour être facile à toucher */
+  }
+
+  /* Modale de contact */
+  .modalTextarea{
+    height: 10px;
+
+  }
+  .modalLabel {
+    font-size: 18px;
+  }
+  .modalTitle {
+    font-size: 22px;
+  }
+  .modalHeader {
+    align-items: center;
+  }
+
+  /* Lightbox : Adaptation mobile */
+  .lightbox {
+    grid-template-columns: 1fr; /* On enlève les colonnes latérales */
+    gap: 10px;
+  }
+
+  /* --- NOUVEAU : Réduction de la taille de l'image sur mobile --- */
+  .lightbox__media {
+    /* On passe de 85vh (par défaut) à 65vh pour que l'image soit moins haute */
+    max-height: 40vh; 
+    max-width: 40vh; 
+  }
+  
+  /* On cache les flèches latérales si besoin, ou on les met en overlay */
+  .lightbox__nav {
+    display: none; /* Sur mobile on peut swiper ou cliquer, les grosses flèches prennent trop de place */
+  }
+  .lightbox__close {
+    top: -45px;
+    right: 0;
+    color: white; /* Pour contraster avec le fond sombre du navigateur */
+  }
+
+  /* Barre de stats (Likes/Prix) : Pleine largeur en bas */
+  .photographer-stats {
+    width: 100%;
+    right: 0;
+    left: 0;
+    border-radius: 0;
+    justify-content: space-around;
+    padding: 10px 20px;
+    height: 70px;
+    font-size: 18px;
+  }
 }
