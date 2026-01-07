@@ -31,7 +31,6 @@ model Media {
 	title	String
 	image	String?
     video   String?
-	thumbnail      String?
 	likes	Int
 	date	String
 	price	Int
