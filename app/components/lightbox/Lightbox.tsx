@@ -63,7 +63,7 @@ export default function Lightbox({ isOpen, onClose, medias, index, setIndex }: P
                 priority
               />
             ) : current.video ? (
-              <video className="lightbox__video" controls>
+              <video className="lightbox__video" controls autoPlay muted>
                 <source src={`/assets/${current.video}`} />
               </video>
             ) : null}
