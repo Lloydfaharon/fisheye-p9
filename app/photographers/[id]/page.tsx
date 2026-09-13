@@ -9,7 +9,7 @@ type PageProps = {
 };
 
 export default async function PhotographerPage({ params }: PageProps) {
-  const { id } = await params; 
+  const { id } = await params;
   const photographerId = Number(id.split("-")[0]);
 
   if (Number.isNaN(photographerId)) {
