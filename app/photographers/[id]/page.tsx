@@ -8,6 +8,17 @@ type PageProps = {
   params: Promise<{ id: string }>;
 };
 
+export function generateStaticParams() {
+  return [
+    { id: "243" },
+    { id: "930" },
+    { id: "82" },
+    { id: "527" },
+    { id: "925" },
+    { id: "195" },
+  ];
+}
+
 export default async function PhotographerPage({ params }: PageProps) {
   const { id } = await params;
   const photographerId = Number(id.split("-")[0]);

@@ -53,8 +53,11 @@ export default function MediaTri({ value, onChange, label = "Trier par" }: Props
   // Quand on ouvre => focus 1ère option du panel
   useEffect(() => {
     if (!open) return;
-    setActiveIndex(0);
-    requestAnimationFrame(() => optRefs.current[0]?.focus());
+    const raf = requestAnimationFrame(() => {
+      setActiveIndex(0);
+      optRefs.current[0]?.focus();
+    });
+    return () => cancelAnimationFrame(raf);
   }, [open]);
 
   const closeAndFocusButton = () => {
